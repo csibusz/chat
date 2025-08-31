@@ -1,0 +1,128 @@
+@import "variables";
+
+// Light/Dark using data-bs-theme attribute (Bootstrap 5.3 compatible)
+:root {
+  --chat-bg: var(--bs-body-bg);
+  --chat-text: var(--bs-body-color);
+  --bubble-in: var(--bs-primary-bg-subtle);
+  --bubble-in-border: var(--bs-primary-border-subtle);
+  --bubble-out: var(--bs-secondary-bg);
+  --bubble-out-border: var(--bs-secondary-border-subtle);
+}
+
+[data-bs-theme="dark"] {
+  --bubble-in: color-mix(in oklab, var(--bs-primary), transparent 80%);
+  --bubble-in-border: color-mix(in oklab, var(--bs-primary), transparent 65%);
+  --bubble-out: color-mix(in oklab, var(--bs-secondary), transparent 75%);
+  --bubble-out-border: color-mix(in oklab, var(--bs-secondary), transparent 55%);
+}
+
+.chat-app {
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar composer";
+
+  @media (max-width: 992px) {
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "header"
+      "main"
+      "composer";
+  }
+}
+
+.chat-header   { grid-area: header; }
+.chat-sidebar  { grid-area: sidebar; border-right: 1px solid var(--bs-border-color); overflow: auto; }
+.chat-main     { grid-area: main; overflow: auto; background: var(--chat-bg); }
+.chat-composer { grid-area: composer; border-top: 1px solid var(--bs-border-color); }
+
+.chat-contact {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: .75rem;
+  align-items: center;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--bs-border-color);
+  cursor: pointer;
+
+  &:hover { background: var(--bs-secondary-bg); }
+}
+
+.avatar {
+  width: 48px; height: 48px; border-radius: .75rem;
+  border: 1px solid var(--bs-border-color);
+  overflow:hidden;
+  position: relative;
+}
+
+.avatar .status-dot {
+  position: absolute;
+  width: 10px; height: 10px; border-radius: 999px;
+  border: 2px solid var(--bs-body-bg);
+  bottom: 2px; right: 2px;
+}
+
+.status-online  { background: #2ecc71; }
+.status-idle    { background: #f1c40f; }
+.status-offline { background: #95a5a6; }
+
+.message-list {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.msg {
+  max-width: 70ch;
+  padding: $chat-bubble-padding;
+  border-radius: $chat-bubble-radius;
+  border: 1px solid transparent;
+  width: fit-content;
+}
+
+.msg-in   { background: var(--bubble-in);   border-color: var(--bubble-in-border); }
+.msg-out  { background: var(--bubble-out);  border-color: var(--bubble-out-border); margin-inline-start: auto; }
+
+.msg .meta {
+  font-size: .775rem;
+  opacity: .7;
+}
+
+.unread-sep {
+  text-align: center;
+  margin: .75rem 0;
+  position: relative;
+}
+.unread-sep span {
+  display: inline-block;
+  background: var(--bs-secondary-bg);
+  padding: .2rem .6rem;
+  border-radius: 999px;
+  border: 1px dashed var(--bs-border-color);
+}
+
+.chat-composer .input-group-text {
+  background: transparent;
+}
+
+.call-avatar {
+  width: 64px; height: 64px; border-radius: 20px;
+  border: 1px solid var(--bs-border-color);
+}
+
+.call-wave {
+  animation: pulse 1.8s infinite ease-out;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(13,110,253,.5); }
+  100% { box-shadow: 0 0 0 20px rgba(13,110,253,0); }
+}
+
+// RTL specific tweaks without Bootstrap RTL build
+[dir="rtl"] .msg-out { margin-inline-start: 0; margin-inline-end: auto; }
