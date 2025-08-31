@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatUI – Calls</title>
+  <link id="bootstrap-ltr" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link id="bootstrap-rtl" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" disabled>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg border-bottom">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-semibold" href="index.html"><i class="bi bi-chat-dots"></i> ChatUI</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="topNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Direct</a></li>
+        <li class="nav-item"><a class="nav-link" href="group.html">Groups</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+        <li class="nav-item"><a class="nav-link" href="calls.html">Calls</a></li>
+        <li class="nav-item"><a class="nav-link" href="settings.html">Settings</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <div class="btn-group" role="group" aria-label="Theme">
+          <button class="btn btn-outline-secondary" data-toggle-theme="light" title="Light"><i class="bi bi-sun"></i></button>
+          <button class="btn btn-outline-secondary" data-toggle-theme="dark" title="Dark"><i class="bi bi-moon"></i></button>
+          <button class="btn btn-outline-secondary" data-toggle-theme="auto" title="Auto"><i class="bi bi-circle-half"></i></button>
+        </div>
+        <button class="btn btn-outline-secondary" data-toggle-dir title="Toggle RTL/LTR"><i class="bi bi-arrow-left-right"></i> RTL</button>
+        <a class="btn btn-primary" href="auth-login.html"><i class="bi bi-person-circle"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-4">
+  <div class="row g-3">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">Start a Call</div>
+        <div class="card-body">
+          <div class="mb-2">Choose a user and start a call.</div>
+          <div class="input-group mb-2">
+            <span class="input-group-text"><i class="bi bi-people"></i></span>
+            <select id="callUser" class="form-select"></select>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#voiceCallModal"><i class="bi bi-telephone"></i> Voice</button>
+            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#videoCallModal"><i class="bi bi-camera-video"></i> Video</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-header">Recent Calls</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-telephone-outbound me-2"></i> Alex → Bella (00:04:12)</span>
+            <span class="text-secondary small">Aug 30, 12:14</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-camera-video-fill me-2"></i> Alex → Project X (00:18:05)</span>
+            <span class="text-secondary small">Aug 29, 16:45</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Voice Call Modal -->
+<div class="modal fade" id="voiceCallModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4 text-center">
+      <div class="fs-1">🔊</div>
+      <h5 class="mb-1">Voice Call</h5>
+      <div class="text-secondary mb-3">Ringing…</div>
+      <div class="d-flex justify-content-center gap-2">
+        <button class="btn btn-success">Accept</button>
+        <button class="btn btn-danger" data-bs-dismiss="modal">Decline</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Video Call Modal -->
+<div class="modal fade" id="videoCallModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4 text-center">
+      <div class="fs-1">🎥</div>
+      <h5 class="mb-1">Video Call</h5>
+      <div class="text-secondary mb-3">Connecting…</div>
+      <div class="d-flex justify-content-center gap-2">
+        <button class="btn btn-success">Start</button>
+        <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const sel = document.getElementById('callUser');
+  const users = (window.DEMO_USERS || []).filter(u => u.id !== 'u1');
+  users.forEach(u => {
+    const opt = document.createElement('option');
+    opt.value = u.id;
+    opt.textContent = u.name + ' (' + u.status + ')';
+    sel.appendChild(opt);
+  });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/mode.js"></script>
+<script src="assets/js/demo-data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

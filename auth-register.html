@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatUI – Register</title>
+  <link id="bootstrap-ltr" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link id="bootstrap-rtl" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" disabled>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg border-bottom">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-semibold" href="index.html"><i class="bi bi-chat-dots"></i> ChatUI</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="topNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Direct</a></li>
+        <li class="nav-item"><a class="nav-link" href="group.html">Groups</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+        <li class="nav-item"><a class="nav-link" href="calls.html">Calls</a></li>
+        <li class="nav-item"><a class="nav-link" href="settings.html">Settings</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <div class="btn-group" role="group" aria-label="Theme">
+          <button class="btn btn-outline-secondary" data-toggle-theme="light" title="Light"><i class="bi bi-sun"></i></button>
+          <button class="btn btn-outline-secondary" data-toggle-theme="dark" title="Dark"><i class="bi bi-moon"></i></button>
+          <button class="btn btn-outline-secondary" data-toggle-theme="auto" title="Auto"><i class="bi bi-circle-half"></i></button>
+        </div>
+        <button class="btn btn-outline-secondary" data-toggle-dir title="Toggle RTL/LTR"><i class="bi bi-arrow-left-right"></i> RTL</button>
+        <a class="btn btn-primary" href="auth-login.html"><i class="bi bi-person-circle"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h4 class="mb-1">Create account</h4>
+          <p class="text-secondary mb-4">Demo registration only</p>
+          <form>
+            <div class="mb-3"><label class="form-label">Name</label><input class="form-control" placeholder="Your name" value="Alex Morgan"></div>
+            <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" placeholder="name@example.com" value="alex@example.com"></div>
+            <div class="mb-3"><label class="form-label">Password</label><input type="password" class="form-control" placeholder="Create a password" value="demo1234"></div>
+            <a href="index.html" class="btn btn-primary w-100">Create Account</a>
+          </form>
+          <hr class="my-4">
+          <div class="text-center small">Have an account? <a href="auth-login.html">Sign in</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/mode.js"></script>
+</body>
+</html>
